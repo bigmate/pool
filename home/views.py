@@ -64,7 +64,7 @@ def post(request):
                 )
                 return HttpResponseRedirect(reverse('home:home', current_app='home'))
             else:
-                error = 'Жарнаманы жайгаштыруу ийгиликсиз аяктады'
+                error = 'Жарнаманы жайгаштыруу ийгиликсиз аяктады/something went wrong'
                 return render(request, 'post/post.html', {'form': form,'error':error})
         else:
             return HttpResponseRedirect(reverse('accounts:signup', current_app='accounts'))

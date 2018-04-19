@@ -37,7 +37,7 @@
 <li class="col-6 col-md-4 mb-4">
   <a href="{% url 'home:category' category.name %}" class="category-items card card-link" style="color:#808080">
    <div class="card-body d-flex flex-row justify-content-center align-items-center">
-     <img src="{% static "home/assets/home.svg"%}" alt="TAM" class="mr-2 d-inline-block icon"> {{ category.name }}
+     <img src="{{ category.image.url }}" alt="{{ category.name }}" class="mr-2 d-inline-block icon"> {{ category.name }}
    </div>
   {% if category.name == q_data %}
        <div class="bg-primary pb-1 w-100"></div>
