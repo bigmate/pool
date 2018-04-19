@@ -1,0 +1,8 @@
+{% extends 'post/base.html' %}
+{% block form_block %}
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading text-center">
+              You have reached your limit <br>The limit is <strong>{{ limit }}</strong>
+          </h4>
+        </div>
+{% endblock %}

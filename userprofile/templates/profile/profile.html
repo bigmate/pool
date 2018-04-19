@@ -1,0 +1,48 @@
+{% extends 'profile/base.html' %}
+{% block namefield %}
+    {{ user.first_name }}
+{% endblock %}
+
+{% block emailfield %}
+    {{ user.email }}
+{% endblock %}
+
+{% block listing_header %}
+    {% if ads%}
+        <div class="list-group-item bg-secondary border-0">
+            Your ads
+        </div>
+    {% else %}
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+          <strong>You have no ads yet</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block listing %}
+{% for ad in ads %}
+<li class="list-group-item">
+<a href="{% url 'home:detail' ad.pk %}" class="list-item-link">
+  <h5 class="mb-1 font-size-header">{{ ad.title|truncatewords:"5" }}</h5>
+  <p class="mb-1 font-size-body">{{ ad.desc|truncatewords:"10" }}</p>
+</a>
+<div class="clearfix text-muted">
+  <small class="d-inline-block mr-2"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>{{ ad.publishing_date }}</small>
+  <small class="d-inline-block mr-2"><i class="fa fa-folder-open-o mr-1" aria-hidden="true"></i>{{ ad.category }}</small>
+  <small class="d-inline-block"><i class="fa fa-eye mr-1" aria-hidden="true"></i>{{ ad.lookups }}</small>
+  <div class="dropdown float-right">
+    <button class="btn btn-outline-primary action-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+      <a class="dropdown-item" href="{% url 'userprofile:update_ad' ad.pk %}">Refresh</a>
+      <a class="dropdown-item" href="{% url 'userprofile:delete_ad' ad.pk %}">Delete</a>
+    </div>
+  </div>
+</div>
+</li>
+{% endfor %}
+{% endblock %}

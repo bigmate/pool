@@ -1,0 +1,59 @@
+{% extends 'detail/base.html' %}
+{% block carousel %}
+<div class="card">
+  <div class="card-body p-0">
+    <div class="carousel-wrapper">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+{#        <ol class="carousel-indicators">#}
+{#          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>#}
+{#          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>#}
+{#          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>#}
+{#        </ol>#}
+        <div class="carousel-inner h-100">
+          <div class="h-100 carousel-item active">
+            <img class="" src="{{ ad.image.url }}" alt="First slide">
+          </div>
+{#          <div class="h-100 carousel-item">#}
+{#            <img class="" src="http://jerdesh.ru/oc-content/uploads/10670/305564.jpg" alt="Second slide">#}
+{#          </div>#}
+{#          <div class="h-100 carousel-item">#}
+{#            <img class="" src="http://jerdesh.ru/oc-content/uploads/6748/171455.jpg" alt="Third slide">#}
+{#          </div>#}
+        </div>
+{#        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">#}
+{#          <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#          <span class="sr-only">Previous</span>#}
+{#        </a>#}
+{#        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">#}
+{#          <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#          <span class="sr-only">Next</span>#}
+{#        </a>#}
+      </div>
+    </div>
+    <div class="text-muted font-size-footer p-3">
+      <span class="mr-2 d-inline-block"><i class="fa fa-map-marker mr-1">
+      </i>{{ ad.region }}<i style="font-size: 5px!important; vertical-align: middle;" class="fa fa-circle mx-1" aria-hidden="true"></i>{{ ad.metro }}</span>
+      <span class="mr-2 d-inline-block"><i class="fa fa-user mr-1"></i>{{ ad.name }}</span>
+      <span class="mr-2 d-inline-block"><i class="fa fa-phone mr-1"></i>{{ ad.phone_number }}</span>
+      {% if ad.is_paid %}
+        <span class="mr-2 d-inline-block"><i class="fa fa-star text-warning"></i></span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block ad_detail %}
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title font-size-header">{{ ad.title }}</h5>
+    <h6 class="font-size-footer card-subtitle mb-1 text-muted"><span class="mr-2 d-inline-block"><i class="fa fa-clock-o mr-1" aria-hidden="true"></i>{{ ad.publishing_date }}</span></h6>
+    <p class="card-text font-size-body">
+      {{ ad.desc }}
+    </p>
+    <a href="#" class="font-size-footer card-link d-inline-block mr-4"><i class="fa fa-whatsapp mr-1"></i>Share</a>
+    <a href="#" class="font-size-footer card-link d-inline-block m-0"><i class="fa fa-link mr-1"></i>Copy link</a>
+  </div>
+</div>
+<button class="btn btn-secondary btn-block">Complain about this ad</button>
+{% endblock %}

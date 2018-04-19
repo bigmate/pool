@@ -1,0 +1,28 @@
+{% extends 'login/base.html' %}
+{% block login %}
+<form class="form-signin" action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}
+  <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+  <h1 class="h3 mb-3 font-weight-normal"><strong><a class="card-link" href="{% url 'home:home' %}">PooL</a></strong></h1>
+  <label for="inputEmail" class="sr-only">Email</label>
+    {{ form.email }}
+{#  <input name="email" type="email" id="inputEmail" class="form-control edge-bottom" placeholder="email" required autofocus>#}
+  <label for="inputPassword" class="sr-only">Password</label>
+    {{ form.password }}
+{#  <input name="password" type="password" id="inputPassword" class="form-control edge-top" placeholder="Password" required>#}
+  <div class="checkbox mb-1">
+      <div class="text-danger">{{ msg }}</div>
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <a href="#" class="ml-2 text-muted">Forgot your password?</a>
+    <div class="h2">
+      <a href="#" class="mr-2" style="color:#FF7900"><i class="fa fa-odnoklassniki-square" aria-hidden="true"></i></a>
+      <a href="#" class="mr-2" style="color:#5181B8"><i class="fa fa-vk" aria-hidden="true"></i></a>
+      <a href="#" style="color:#3B5998"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+  <a href="{% url 'accounts:signup' %}" class="d-block mt-3 text-muted">Sign up</a>
+</form>
+{% endblock %}

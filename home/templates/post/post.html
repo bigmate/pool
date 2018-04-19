@@ -1,0 +1,54 @@
+{% extends 'post/base.html' %}
+{% load pool_filters %}
+{% block form_block %}
+<form action="{% url 'home:post' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+   {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+          <strong>{{ error }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+   {% endif %}
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="{{ request.user.first_name }}" readonly>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label class="my-1 mr-2" for="{{ form.region.id_for_label }}">{{ form.region.label }}</label>
+          {{ form.region }}
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+          <label class="my-1 mr-2" for="{{ form.metro.id_for_label }}">{{ form.metro.label }}</label>
+          {{ form.metro }}
+      </div>
+    </div>
+  </div>
+    <div class="form-group">
+        <label class="my-1 mr-2" for="category">Category</label>
+        {{ form.category }}
+    </div>
+  <div class="form-group">
+    <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+      {{ form.title}}
+    <small id="title-help" class="form-text text-muted">Example: Need room</small>
+  </div>
+  <div class="form-group">
+    <label for="{{ form.desc.id_for_label }}">{{ form.desc.label }}</label>
+      {{ form.desc}}
+  </div>
+  <div class="custom-file">
+    {{ form.image }}
+    <label class="custom-file-label" for="{{ form.image.id_for_label }}">Choose file</label>
+  </div>
+  <div class="form-check my-3">
+      {{ form.is_paid}}
+    <label class="form-check-label" for="{{ form.is_paid.id_for_label }}">{{ form.is_paid.label }}</label>
+  </div>
+  <button type="submit" class="btn btn-block btn-primary mt-2">Post</button>
+</form>
+{% endblock %}

@@ -1,0 +1,59 @@
+      <header>
+        <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light pr-0 pl-0">
+              <a class="navbar-brand" href="{% url 'home:home' %}">
+                <!-- <img class="d-inline-block" style="height:1rem;" src="../assets/discover.svg" alt=""> -->
+                <h3 class="m-0 p-0 text-primary"><strong>PooL</strong></h3>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                  <!-- <span class="navbar-toggler-icon"></span> -->
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                      {% if request.path != '/userprofile/' %}
+                          {% if request.user.is_authenticated %}
+
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                                  <img class="avatar" src="{{ request.user.avatar.url }}" alt="me">
+                                  <span>{{ request.user.first_name }}</span>
+                              </a>
+                              <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="{% url 'userprofile:profile' %}"><i class="mr-1 fa fa-user"></i>Cabinet</a>
+                                  <a class="dropdown-item" href="{% url 'accounts:logout' %}"><i class="mr-1 fa fa-sign-out"></i>Log out</a>
+                              </div>
+                          </li>
+                          <li class="nav-item">
+                          <span class="nav-link">
+                              <a href="#" class="btn btn-sm btn-success">
+                                  <i class="fa fa-rub mr-1" aria-hidden="true"></i><span>{{ request.user.balance }}</span>
+                              </a>
+                          </span>
+                          </li>
+
+                          {% else %}
+                              <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                <span>Account</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'accounts:signup' %}">Sign up</a>
+                                <a class="dropdown-item" href="{% url 'accounts:login' %}">Sign in</a>
+                            </div>
+                            </li>
+                          {% endif %}
+                      {% endif %}
+                      {% if request.path != '/post/' %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'home:post' %}">
+                            <button class="text-light btn btn-sm btn-primary" type="button">Post and ad</button>
+                          </a>
+                      </li>
+                      {% endif %}
+                  </ul>
+              </div>
+          </nav>
+        </div>
+      </header>
