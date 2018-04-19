@@ -15,6 +15,7 @@ Including another URLconf
 """
 from . import views
 from django.urls import path
+# from .generate import generate
 app_name = 'home'
 urlpatterns = [
     path('', views.home, name='home'),
@@ -23,3 +24,4 @@ urlpatterns = [
     path('category/<str:category>', views.category, name='category'),
     path('post/', views.post, name='post'),
 ]
+# generate()

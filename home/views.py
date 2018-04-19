@@ -15,7 +15,7 @@ def home(request):
 def listing(request, items, q_data=''):
     categories = Category.objects.all()
     regions = Region.objects.all()
-    paginator = Paginator(items, 1)  # Show 25 contacts per page
+    paginator = Paginator(items, 25)  # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         ads = paginator.get_page(page)

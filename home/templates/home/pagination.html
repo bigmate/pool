@@ -13,7 +13,7 @@
          </span>
         </li>
     {% endif %}
-    <li class="page-item"><span class="page-link">{{ ads.number }} из {{ ads.paginator.num_pages }}</span></li>
+    <li class="page-item"><span class="page-link">{{ ads.number }} of {{ ads.paginator.num_pages }}</span></li>
     {% if ads.has_next %}
         <li class="page-item">
           <a class="page-link" href="?page={{ ads.number|add:1 }}&query={{ q_data }}">

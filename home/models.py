@@ -45,12 +45,13 @@ class Ad(models.Model):
 
     def __str__(self):
         return self.title
+
     @property
     def name(self):
         return self.user.first_name
     @property
     def phone_number(self):
-        return self.user.email
+        return self.user.phone
     @property
     def was_published_recently(self):
         now = timezone.now()
@@ -58,7 +59,7 @@ class Ad(models.Model):
     @property
     def publishing_date(self):
         if self.was_published_recently:
-            return 'Сегодня'
+            return 'Today'
         else:
             pd = self.pub_date
             return pd.date()
